@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@layer base {
+  button {
+    @apply border py-3 px-6 rounded-full
+  }
+  .headingTop {
+    @apply font-bold text-5xl md:text-7xl drop-shadow-2xl
+  }
+  /* Navbar styles */
+  .navItems {
+    @apply font-bold text-3xl p-8
+  }
+  /* Offers Text */
+  .offersText {
+    @apply text-lg font-bold text-gray-700
+  }
+}
