@@ -1,29 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HiMenu } from "react-icons/hi";
 
 export const Navbar = () => {
-    const[nav, setNav] = useState(false)
+    const[sideNav, setSideNav] = useState(false)
     const handleNav = () => {
-        setNav(!nav);
+        setSideNav(!sideNav);
         //change css overflow property
-        !nav ? document.body.style.overflow = 'hidden' : document.body.overflow = 'scroll'
+        !sideNav ? document.body.style.overflow = 'hidden' : document.body.overflow = 'scroll'
     };
+
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
 
   return (
     <div className="absolute w-full flex flex-col text-left p-4">
-        <h1 className="text-white font-bold text-2xl z-20">Experiences</h1>
-        <HiMenu onClick={handleNav} className="z-20 text-white cursor-pointer"/>
-        <div className={
-            nav ? 
-            "ease-in duration-300 fixed text-gray-300 left-0 top-0 w-full h-screen bg-black/90 px-4 py-7 flex-col z-10" 
-            : "absolute top-0 h-screen left-[-100%] ease-in duration-500 z-10" }>
-            <ul className="flex flex-col fixed w-full h-full items-center justify-center ">
-                <li className="navItems">Home</li>
-                <li className="navItems">Destinations</li>
-                <li className="navItems">Reservations</li>
-                <li className="navItems">Amenities</li>
-                <li className="navItems">Rooms</li>
-
+        <h1 className="text-white font-bold text-2xl z-20 md:z-30 md:text-center md:mb-4">Experiences</h1>
+        <HiMenu onClick={handleNav} className="hamburger"/>
+        <div className={isMobile ? (sideNav ? "mobileEaseIn" : "mobileEaseOut") : "desktop"}>
+            <ul className={isMobile ? "mobile" : "desktop"}>
+                <li className={isMobile? "mobileNavItems" : "desktopNavItems"}>Home</li>
+                <li className={isMobile? "mobileNavItems" : "desktopNavItems"}>Destinations</li>
+                <li className={isMobile? "mobileNavItems" : "desktopNavItems"}>Reservations</li>
+                <li className={isMobile? "mobileNavItems" : "desktopNavItems"}>Amenities</li>
+                <li className={isMobile? "mobileNavItems" : "desktopNavItems"}>Rooms</li>
             </ul>
         </div>
     </div>

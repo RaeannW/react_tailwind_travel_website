@@ -7,12 +7,45 @@
   .headingTop {
     @apply font-bold text-5xl md:text-7xl drop-shadow-2xl
   }
-  /* Navbar styles */
-  .navItems {
-    @apply font-bold text-3xl p-8
-  }
   /* Offers Text */
   .offersText {
     @apply text-lg font-bold text-gray-700
   }
+
+  /* Navbar styles */
+  .mobileNavItems {
+    @apply font-bold text-3xl p-8
+  }
+  .desktopNavItems {
+    @apply font-bold text-base px-6 text-center py-2
+  }
+
+  .desktop {
+    @apply flex justify-center items-center text-center bg-black/10 text-white z-20 w-full;
+  }
+
+  @media screen and (max-width:768px) {
+    .mobile { 
+      @apply flex flex-col fixed w-full h-full  justify-center 
+     }
+  }
+  @media screen and (max-width:768px) {
+    .mobileEaseIn { 
+      @apply ease-in duration-300 fixed text-gray-300 left-0 top-0 w-full h-screen bg-black/90 px-4 py-7 flex-col z-10
+  }
+  }
+  @media screen and (max-width:768px) {
+    .mobileEaseOut { 
+      @apply absolute top-0 h-screen left-[-100%] ease-in duration-500 z-10
+  }
+  }
+  .hamburger {
+    @apply md:hidden z-20 text-white cursor-pointer 
+  }
+
+
+
+
+
+  
 }
